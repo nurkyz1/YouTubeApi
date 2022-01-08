@@ -19,7 +19,7 @@ class PlaylistAdapter (private  val playlist: ArrayList<Items>):
             }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         binding = ItemPlaylistBinding.inflate(LayoutInflater.from(parent.context),parent,false)
-      return ViewHolder(binding)
+      return ViewHolder()
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -29,7 +29,7 @@ class PlaylistAdapter (private  val playlist: ArrayList<Items>):
     override fun getItemCount(): Int {
       return  playlist.size
     }
-inner class  ViewHolder(binding: ItemPlaylistBinding) : RecyclerView.ViewHolder(this.binding.root){
+inner class  ViewHolder : RecyclerView.ViewHolder(this.binding.root){
     @SuppressLint("SetTextI18n")
     fun onBind(playlist: Items){
         binding.subTitle.text= playlist.contentDetails.itemCount.toString()+ itemView.context.getString(

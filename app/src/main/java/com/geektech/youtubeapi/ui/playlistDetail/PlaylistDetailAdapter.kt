@@ -16,7 +16,6 @@ RecyclerView.Adapter<PlaylistDetailAdapter.ViewHolder>(){
         this.onClickListener = onClickListener
     }
 
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
    binding = ItemDetailBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         return ViewHolder(binding)
@@ -42,5 +41,4 @@ RecyclerView.Adapter<PlaylistDetailAdapter.ViewHolder>(){
     interface OnClickListener{
         fun onClickListener(items: Items)
     }
-
 }

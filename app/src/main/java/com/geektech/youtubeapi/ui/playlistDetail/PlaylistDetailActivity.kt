@@ -57,7 +57,6 @@ class PlaylistDetailActivity :
                             }
                         }
                     })
-
                 }
                 Status.ERROR -> {
                     viewModel.loading.postValue(false)
