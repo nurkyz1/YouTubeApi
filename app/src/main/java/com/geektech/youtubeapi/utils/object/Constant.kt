@@ -1,4 +1,4 @@
-package com.geektech.youtubeapi.`object`
+package com.geektech.youtubeapi.utils.`object`
 
 object Constant {
     const val PART = "snippet,contentDetails"

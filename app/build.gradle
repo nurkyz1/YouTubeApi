@@ -54,4 +54,10 @@ dependencies {
 
 // Interceptor
     implementation("com.squareup.okhttp3:logging-interceptor:5.0.0-alpha.2")
+    // Architecture Components
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    implementation 'androidx.core:core-ktx:1.8.0-alpha02'
+
 }

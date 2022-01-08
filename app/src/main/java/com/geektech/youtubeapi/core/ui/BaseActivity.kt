@@ -1,4 +1,4 @@
-package com.geektech.youtubeapi.base
+package com.geektech.youtubeapi.core.ui
     import android.content.Context
     import android.net.ConnectivityManager
     import android.net.NetworkCapabilities
@@ -8,7 +8,7 @@ package com.geektech.youtubeapi.base
     import androidx.appcompat.app.AppCompatActivity
     import androidx.viewbinding.ViewBinding
 
-    abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
+abstract class BaseActivity<VM : BaseViewModel, VB : ViewBinding> : AppCompatActivity() {
 
         protected lateinit var binding: VB
         protected lateinit var viewModel: VM

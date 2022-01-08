@@ -1,4 +1,4 @@
-package com.geektech.youtubeapi.model
+package com.geektech.youtubeapi.data.remote.model
 data class PlayList(
 
     var kind: String,
@@ -85,7 +85,6 @@ data class Items(
     var snippet: Snippet,
 
     var contentDetails: ContentDetails
-
 )
 
 
@@ -129,5 +128,4 @@ data class ContentDetails(
     var projection: String,
 
     var itemCount: Int,
-
     )

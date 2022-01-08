@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.geektech.youtubeapi.R
 import com.geektech.youtubeapi.databinding.ItemPlaylistBinding
 import com.geektech.youtubeapi.extentions.load
-import com.geektech.youtubeapi.model.Items
+import com.geektech.youtubeapi.data.remote.model.Items
 
 class PlaylistAdapter (private  val playlist: ArrayList<Items>):
         RecyclerView.Adapter<PlaylistAdapter.ViewHolder>(){

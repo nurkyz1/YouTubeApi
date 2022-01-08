@@ -2,4 +2,6 @@
     <string name="app_name">YouTubeApi</string>
     <string name="try_again">Try again</string>
     <string name="video_series">video series</string>
+    <string name="back">Back</string>
+    <string name="play_list_tool_bar">Playlist</string>
 </resources>

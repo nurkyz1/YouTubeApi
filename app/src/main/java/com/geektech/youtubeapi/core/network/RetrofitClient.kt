@@ -1,6 +1,7 @@
-package com.geektech.youtubeapi.remote
+package com.geektech.youtubeapi.core.network
 
 import com.geektech.youtubeapi.BuildConfig.BASE_URL
+import com.geektech.youtubeapi.data.remote.YouTubeApi
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -9,7 +10,7 @@ import java.util.concurrent.TimeUnit
 
 class RetrofitClient {
     companion object{
-        fun create(): YouTubeApi{
+        fun create(): YouTubeApi {
             val interceptor = HttpLoggingInterceptor()
                 interceptor.setLevel(HttpLoggingInterceptor.Level.BODY)
 

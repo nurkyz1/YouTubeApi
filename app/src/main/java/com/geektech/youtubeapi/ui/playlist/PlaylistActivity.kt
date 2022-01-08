@@ -3,12 +3,15 @@ package com.geektech.youtubeapi.ui.playlist
 import android.content.Intent
 import android.view.LayoutInflater
 import androidx.lifecycle.ViewModelProvider
-import com.geektech.youtubeapi.`object`.Constant.KEY
-import com.geektech.youtubeapi.base.BaseActivity
+import com.geektech.youtubeapi.core.network.result.Status
+import com.geektech.youtubeapi.utils.`object`.Constant.KEY
+import com.geektech.youtubeapi.core.ui.BaseActivity
 import com.geektech.youtubeapi.databinding.ActivityPlaylistBinding
 import com.geektech.youtubeapi.databinding.ItemNetworkBinding
 import com.geektech.youtubeapi.extentions.visible
-import com.geektech.youtubeapi.model.Items
+import com.geektech.youtubeapi.data.remote.model.Items
+import com.geektech.youtubeapi.extentions.showToast
+import com.geektech.youtubeapi.ui.playlistDetail.PlaylistDetailActivity
 
 class PlaylistActivity : BaseActivity<PlaylistViewModel, ActivityPlaylistBinding>() {
 
@@ -18,14 +21,14 @@ class PlaylistActivity : BaseActivity<PlaylistViewModel, ActivityPlaylistBinding
 
     override fun initView() {
         super.initView()
-        viewModel = ViewModelProvider(this).get(PlaylistViewModel::class.java)
+        viewModel = ViewModelProvider(this)[PlaylistViewModel::class.java]
         bindingNetwork = ItemNetworkBinding.inflate(layoutInflater)
         checkInet()
     }
 
     override fun initListener() {
         super.initListener()
-        binding.networkLayout.btnNetwork.setOnClickListener {
+        bindingNetwork.btnNetwork.setOnClickListener {
             checkInet()
         }
     }
@@ -33,7 +36,27 @@ class PlaylistActivity : BaseActivity<PlaylistViewModel, ActivityPlaylistBinding
     override fun initViewModel() {
         super.initViewModel()
         viewModel.getPlaylist().observe(this) {
-            adapter = PlaylistAdapter(it.items as ArrayList<Items>)
+            when(it.status){
+                Status.LOADING->{viewModel.loading.postValue(true)}
+                Status.SUCCESS->{
+                    viewModel.loading.postValue(false)
+                    adapter = PlaylistAdapter(it.data?.items as ArrayList<Items>)
+                    binding.recyclerView.adapter = adapter
+                    adapter.setOnItemClickListener(object : PlaylistAdapter.OnItemClickListener {
+                        override fun onItemClick(id: String) {
+                            Intent(this@PlaylistActivity, PlaylistDetailActivity::class.java).apply {
+                                putExtra(KEY, id)
+                                startActivity(this)
+                            }
+                        }
+                    })
+                }
+                Status.ERROR->{
+                    viewModel.loading.postValue(false)
+                    showToast(it.message.toString())
+                }
+            }
+            adapter = PlaylistAdapter(it.data?.items as ArrayList<Items>)
             binding.recyclerView.adapter = adapter
             adapter.setOnItemClickListener(object : PlaylistAdapter.OnItemClickListener {
                 override fun onItemClick(id: String) {
